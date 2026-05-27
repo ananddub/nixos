@@ -3,7 +3,6 @@
   programs.bash.enableCompletion = true; 
   programs.bash.enableLsColors = true;
   programs.bash.blesh.enable = true;
-
   
   programs.bash.promptPluginInit  =  ''
     eval "$(zoxide init bash)"
