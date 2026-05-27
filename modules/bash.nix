@@ -5,11 +5,11 @@
   programs.bash.blesh.enable = true;
 
   
-  programs.bash.shellInit =  ''
+  programs.bash.promptPluginInit  =  ''
     eval "$(zoxide init bash)"
-
-    
+    export PATH="$HOME/.local/bin:$PATH"
   '';
+
   programs.bash.shellAliases = {
     rebuild = "sudo nixos-rebuild switch";
     cd = "z";

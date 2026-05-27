@@ -9,5 +9,6 @@
     ./modules/gaming.nix
     ./modules/virtualisation.nix
     ./modules/vim.nix
+    ./modules/bash.nix
   ];
 }

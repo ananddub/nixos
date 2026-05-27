@@ -26,15 +26,16 @@
   programs.nix-ld.libraries = with pkgs; [ xorg.libX11 ];
   
   fileSystems."/run/media/das/SSD" = {
-    device = "/dev/disk/by-uuid/1AB03937B0391AA9";
-    fsType = "ntfs-3g";
-    options = [ "uid=1000" "gid=100" "dmask=022" "fmask=133" "nofail" ];
-  };
-  fileSystems."/run/media/das/HDD" = {
-    device = "/dev/disk/by-uuid/6E8EC6468EC60715";
-    fsType = "ntfs-3g";
-    options = [ "uid=1000" "gid=100" "dmask=022" "fmask=133" "nofail" ];
-  };
+  device = "/dev/disk/by-uuid/1AB03937B0391AA9";
+  fsType = "ntfs-3g";
+  options = [ "uid=1000" "gid=100" "dmask=000" "fmask=000" "exec" "nofail" ];
+};
+
+fileSystems."/run/media/das/HDD" = {
+  device = "/dev/disk/by-uuid/6E8EC6468EC60715";
+  fsType = "ntfs-3g";
+  options = [ "uid=1000" "gid=100" "dmask=000" "fmask=000" "exec" "nofail" ];
+};
 
   nix.nixPath = [ "nixos-config=/run/media/das/SSD/nixos/configuration.nix" "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos" ];
   system.stateVersion = "25.11";
