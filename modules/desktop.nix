@@ -16,7 +16,6 @@
   };
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
-
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -25,4 +24,5 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
+
 }

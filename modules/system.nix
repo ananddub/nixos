@@ -18,13 +18,13 @@
     LC_PAPER = "en_IN"; LC_TELEPHONE = "en_IN"; LC_TIME = "en_IN";
   };
 
-  zramSwap.enable = true;
-  zramSwap.memoryPercent = 50;
+  # zramSwap.enable = true;
+  # zramSwap.memoryPercent = 50;
   powerManagement.cpuFreqGovernor = "performance";
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [ xorg.libX11 ];
-
+  
   fileSystems."/run/media/das/SSD" = {
     device = "/dev/disk/by-uuid/1AB03937B0391AA9";
     fsType = "ntfs-3g";
@@ -39,4 +39,3 @@
   nix.nixPath = [ "nixos-config=/run/media/das/SSD/nixos/configuration.nix" "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos" ];
   system.stateVersion = "25.11";
 }
-# placeholder - will be replaced

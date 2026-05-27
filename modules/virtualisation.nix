@@ -22,7 +22,6 @@
     ];
     autoStart = true;
   };
-
   # Portainer - Docker GUI (http://docker.local)
   virtualisation.oci-containers.containers.portainer = {
     image = "portainer/portainer-ce:latest";
