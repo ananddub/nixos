@@ -8,11 +8,16 @@
   services.desktopManager.gnome.enable = true;
   services.printing.enable = true;
 
+  programs.dconf.enable = true;
+  programs.dconf.profiles.user.databases = [{
+    settings."org/gnome/mutter" = {
+      check-alive-timeout = lib.gvariant.mkUint32 0;
+    };
+  }];
+
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    GBM_BACKEND = "nvidia-drm";
-    NVD_BACKEND = "direct";
   };
 
   hardware.nvidia = {

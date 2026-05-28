@@ -15,6 +15,7 @@
 
   programs.bash.shellAliases = {
     rebuild = "sudo nixos-rebuild switch";
+    btop = "btop --force-utf";
     cd = "z";
     ls = "eza --icons";
     ll = "eza -l --icons";
