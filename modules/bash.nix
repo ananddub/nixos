@@ -6,6 +6,7 @@
   
   programs.bash.promptPluginInit  =  ''
     eval "$(zoxide init bash)"
+    eval "$(direnv hook bash)"
     export PATH="$HOME/.local/bin:$PATH"
     export ANDROID_HOME=$HOME/Android/Sdk
     export PATH=$PATH:$ANDROID_HOME/emulator

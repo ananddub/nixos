@@ -4,7 +4,24 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelModules = [ "kvm-amd" ];
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    max-jobs = "auto";
+    cores = 0;
+    substituters = [ "https://cache.nixos.org" "https://nix-community.cachix.org" ];
+    trusted-public-keys = [ "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCUSeBc=" ];
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+  nix.optimise.automatic = true;
+
+  services.earlyoom.enable = true;
 
   networking.hostName = "nixos";
   networking.extraHosts = "127.0.0.1 docker.local";
@@ -22,20 +39,38 @@
   # zramSwap.memoryPercent = 50;
   powerManagement.cpuFreqGovernor = "performance";
 
+  boot.kernel.sysctl = {
+    "vm.dirty_ratio" = 10;
+    "vm.dirty_background_ratio" = 5;
+    "vm.vfs_cache_pressure" = 50;
+    "kernel.sched_autogroup_enabled" = 1;
+    "vm.max_map_count" = 2147483642;
+    "kernel.split_lock_mitigate" = 0;
+    "vm.nr_hugepages" = 128;
+  };
+
+  services.irqbalance.enable = true;
+  services.fstrim.enable = true;
+
+  services.udev.extraRules = ''
+    ACTION=="add|change", KERNEL=="nvme[0-9]*", ATTR{queue/scheduler}="none"
+    ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
+  '';
+
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [ xorg.libX11 ];
   
   fileSystems."/run/media/das/SSD" = {
-  device = "/dev/disk/by-uuid/1AB03937B0391AA9";
-  fsType = "ntfs-3g";
-  options = [ "uid=1000" "gid=100" "dmask=000" "fmask=000" "exec" "nofail" ];
-};
+    device = "/dev/disk/by-uuid/1AB03937B0391AA9";
+    fsType = "ntfs-3g";
+    options = [ "uid=1000" "gid=100" "dmask=000" "fmask=000" "exec" "nofail" ];
+  };
 
-fileSystems."/run/media/das/HDD" = {
-  device = "/dev/disk/by-uuid/6E8EC6468EC60715";
-  fsType = "ntfs-3g";
-  options = [ "uid=1000" "gid=100" "dmask=000" "fmask=000" "exec" "nofail" ];
-};
+  fileSystems."/run/media/das/HDD" = {
+    device = "/dev/disk/by-uuid/6E8EC6468EC60715";
+    fsType = "ntfs-3g";
+    options = [ "uid=1000" "gid=100" "dmask=000" "fmask=000" "exec" "nofail" ];
+  };
 
   nix.nixPath = [ "nixos-config=/run/media/das/SSD/nixos/configuration.nix" "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos" ];
   system.stateVersion = "25.11";

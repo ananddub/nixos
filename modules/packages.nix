@@ -9,6 +9,6 @@
     boxbuddy tela-icon-theme ntfs3g
     mangohud btop fish fastfetch yazi eza
     ptyxis android-studio zed-editor vscode direnv nixd
-    btop   brave
+    brave
   ];
 }
