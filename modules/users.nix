@@ -3,7 +3,7 @@
   users.users.das = {
     isNormalUser = true;
     description = "das";
-    extraGroups = [ "networkmanager" "wheel" "podman" "docker" "kvm" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "podman" "docker" "kvm" "libvirtd" "adbusers" ];
     packages = with pkgs; [];
   };
 

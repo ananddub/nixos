@@ -1,15 +1,24 @@
 { config, lib, pkgs, ... }:
+let
+  de = "plasma"; # "gnome" ya "plasma"
+in
 {
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
   services.xserver.xkb = { layout = "us"; variant = ""; };
-  services.displayManager.gdm.enable = true;
-  services.displayManager.gdm.wayland = true;
-  services.desktopManager.gnome.enable = true;
+
+  services.displayManager.gdm.enable = de == "gnome";
+  services.displayManager.gdm.wayland = de == "gnome";
+  services.desktopManager.gnome.enable = de == "gnome";
+
+  services.displayManager.sddm.enable = de == "plasma";
+  services.displayManager.sddm.wayland.enable = de == "plasma";
+  services.desktopManager.plasma6.enable = de == "plasma";
+
   services.printing.enable = true;
 
-  programs.dconf.enable = true;
-  programs.dconf.profiles.user.databases = [{
+  programs.dconf.enable = lib.mkIf (de == "gnome") true;
+  programs.dconf.profiles.user.databases = lib.mkIf (de == "gnome") [{
     settings."org/gnome/mutter" = {
       check-alive-timeout = lib.gvariant.mkUint32 0;
     };
@@ -38,5 +47,4 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
 }
