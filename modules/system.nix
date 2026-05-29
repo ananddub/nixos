@@ -45,8 +45,6 @@
     "vm.vfs_cache_pressure" = 50;
     "kernel.sched_autogroup_enabled" = 1;
     "vm.max_map_count" = 2147483642;
-    "kernel.split_lock_mitigate" = 0;
-    "vm.nr_hugepages" = 128;
   };
 
   services.irqbalance.enable = true;
@@ -58,7 +56,14 @@
   '';
 
   programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [ xorg.libX11 ];
+  programs.nix-ld.libraries = with pkgs; [
+    xorg.libX11 xorg.libXext xorg.libXrender xorg.libXtst xorg.libXi xorg.libxcb
+    libGL zlib stdenv.cc.cc.lib libpulseaudio dbus glib libpng nss nspr
+    gperftools expat libdrm xorg.libxkbfile libbsd xorg.xcbutil xorg.xcbutilcursor
+    xorg.xcbutilimage xorg.xcbutilkeysyms xorg.xcbutilwm xorg.libXfixes
+    xorg.libSM xorg.libICE fontconfig freetype pcre2 vulkan-loader
+    mesa alsa-lib xorg.libXcomposite xorg.libXcursor xorg.libXdamage
+  ];
   
   fileSystems."/run/media/das/SSD" = {
     device = "/dev/disk/by-uuid/1AB03937B0391AA9";

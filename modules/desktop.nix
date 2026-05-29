@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  de = "plasma"; # "gnome" ya "plasma"
+  de = "gnome"; # "gnome" ya "plasma"
 in
 {
   services.xserver.enable = true;
@@ -27,6 +27,11 @@ in
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    ANDROID_HOME = "$HOME/Android/Sdk";
+    ANDROID_SDK_ROOT = "$HOME/Android/Sdk";
+    PATH = "$HOME/Android/Sdk/emulator:$HOME/Android/Sdk/platform-tools:$PATH";
+    QT_QPA_PLATFORM = "xcb";
+    ANDROID_EMULATOR_USE_SYSTEM_LIBS = "1";
   };
 
   hardware.nvidia = {
@@ -34,11 +39,15 @@ in
     powerManagement.enable = true;
     open = false;
     nvidiaSettings = true;
-    forceFullCompositionPipeline = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
+  hardware.graphics.extraPackages = with pkgs; [ nvidia-vaapi-driver vulkan-loader vulkan-validation-layers ];
+  hardware.graphics.extraPackages32 = with pkgs; [ vulkan-loader ];
+
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
