@@ -77,6 +77,6 @@
     options = [ "uid=1000" "gid=100" "dmask=000" "fmask=000" "exec" "nofail" ];
   };
 
-  nix.nixPath = [ "nixos-config=/run/media/das/SSD/nixos/configuration.nix" "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos" ];
-  system.stateVersion = "25.11";
+  nix.nixPath = [ "nixos-config=/home/das/Documents/nixos/configuration.nix" "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos" ];
+  system.stateVersion = "26.05";
 }

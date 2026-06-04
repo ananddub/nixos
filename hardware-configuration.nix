@@ -12,19 +12,21 @@
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
-
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/20d5a8bf-35de-43d8-a735-a28bdc8e3d0c";
+    { device = "/dev/disk/by-uuid/991dcc8e-1f97-4543-aeee-359f703f8475";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/F060-8EEC";
+    { device = "/dev/disk/by-uuid/5656-D44F";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices = [ ];
+  swapDevices =
+    [ 
+      { device = "/dev/disk/by-uuid/687bbe2b-f3e9-4ea5-a8e6-f039c63900b1"; }
+    ];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

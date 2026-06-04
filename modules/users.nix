@@ -6,7 +6,7 @@
     extraGroups = [ "networkmanager" "wheel" "podman" "docker" "kvm" "libvirtd" "adbusers" ];
     packages = with pkgs; [];
   };
-
+  
   # programs.adb.enable = true;
 
 }

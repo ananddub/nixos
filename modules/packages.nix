@@ -12,7 +12,7 @@ in
     boxbuddy tela-icon-theme ntfs3g
     mangohud btop fish fastfetch yazi eza
     ptyxis pkgs.androidStudioPackages.stable zed-editor vscode direnv nixd
-    brave
+    brave heroic
   ]
   ++ lib.optionals (de == "gnome") [
     gnome-tweaks gnome-extension-manager

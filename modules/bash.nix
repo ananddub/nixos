@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 {
-  programs.bash.enableCompletion = true;
+  programs.bash.completion.enable = true;
   programs.bash.enableLsColors = true;
   programs.bash.blesh.enable = true;
   
