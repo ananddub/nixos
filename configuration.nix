@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 {
   imports = [
+    <home-manager/nixos>
     ./hardware-configuration.nix
     ./modules/system.nix
     ./modules/desktop.nix
@@ -10,5 +11,6 @@
     ./modules/virtualisation.nix
     ./modules/vim.nix
     ./modules/bash.nix
+    ./modules/home.nix
   ];
 }

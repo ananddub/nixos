@@ -11,8 +11,9 @@ in
     google-chrome discord distrobox docker
     boxbuddy tela-icon-theme ntfs3g
     mangohud btop fish fastfetch yazi eza
-    ptyxis pkgs.androidStudioPackages.stable zed-editor vscode direnv nixd
-    brave heroic
+    ptyxis zed-editor vscode direnv nixd
+    brave heroic nodejs_latest home-manager
+    androidStudioPackages.stable
   ]
   ++ lib.optionals (de == "gnome") [
     gnome-tweaks gnome-extension-manager
@@ -20,4 +21,5 @@ in
   ++ lib.optionals (de == "plasma") [
     kdePackages.kate kdePackages.kcalc kdePackages.filelight
   ];
+  
 }

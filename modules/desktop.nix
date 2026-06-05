@@ -8,7 +8,6 @@ in
   services.xserver.xkb = { layout = "us"; variant = ""; };
 
   services.displayManager.gdm.enable = de == "gnome";
-  services.displayManager.gdm.wayland = de == "gnome";
   services.desktopManager.gnome.enable = de == "gnome";
 
   services.displayManager.sddm.enable = de == "plasma";
@@ -36,6 +35,8 @@ in
     PATH = "$HOME/Android/Sdk/emulator:$HOME/Android/Sdk/platform-tools:$PATH";
     QT_QPA_PLATFORM = "xcb";
     VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    ANDROID_EMULATOR_USE_SYSTEM_LIBS = "1";
+    ANDROID_EMULATOR_FORCE_GPU = "host";
   };
 
   hardware.nvidia = {

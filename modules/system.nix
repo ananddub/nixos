@@ -57,12 +57,12 @@
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
-    xorg.libX11 xorg.libXext xorg.libXrender xorg.libXtst xorg.libXi xorg.libxcb
+    libx11 libxext libxrender libxtst libxi libxcb
     libGL zlib stdenv.cc.cc.lib libpulseaudio dbus glib libpng nss nspr
-    gperftools expat libdrm xorg.libxkbfile libbsd xorg.xcbutil xorg.xcbutilcursor
-    xorg.xcbutilimage xorg.xcbutilkeysyms xorg.xcbutilwm xorg.libXfixes
-    xorg.libSM xorg.libICE fontconfig freetype pcre2 vulkan-loader
-    mesa alsa-lib xorg.libXcomposite xorg.libXcursor xorg.libXdamage
+    gperftools expat libdrm libxkbfile libbsd libxcb-util libxcb-cursor
+    libxcb-image libxcb-keysyms libxcb-wm libxfixes
+    libsm libice fontconfig freetype pcre2 vulkan-loader
+    mesa alsa-lib libxcomposite libxcursor libxdamage
   ];
   
   fileSystems."/run/media/das/SSD" = {
