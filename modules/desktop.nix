@@ -34,7 +34,7 @@ in
     ANDROID_SDK_ROOT = "$HOME/Android/Sdk";
     PATH = "$HOME/Android/Sdk/emulator:$HOME/Android/Sdk/platform-tools:$PATH";
     QT_QPA_PLATFORM = "xcb";
-    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.x86_64.json";
+    VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/nvidia_icd.json";
     ANDROID_EMULATOR_USE_SYSTEM_LIBS = "1";
     ANDROID_EMULATOR_FORCE_GPU = "host";
   };

@@ -1,4 +1,7 @@
 { config, pkgs, ... }:
+let
+  homeDir = config.home-manager.users.das.home.homeDirectory;
+in
 {
   home-manager.users.das = {
     home.username = "das";
@@ -7,13 +10,13 @@
 
     programs.git = {
       enable = true;
-      userName = "ananddub";
-      userEmail = "duanand6@gmail.com";
+      settings.user.name = "ananddub";
+      settings.user.email = "duanand6@gmail.com";
     };
 
     programs.npm = {
       enable = true;
-      settings.prefix = "$HOME/.npm-global";
+      settings.prefix = "${homeDir}/.npm-global";
     };
 
     home.sessionPath = [ "$HOME/.npm-global/bin" ];
