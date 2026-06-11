@@ -1,5 +1,6 @@
 { config, lib, pkgs, ... }:
 {
+  nixpkgs.config.allowUnfree = true;
   imports = [
     <home-manager/nixos>
     ./hardware-configuration.nix

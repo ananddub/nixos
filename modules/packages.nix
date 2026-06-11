@@ -12,8 +12,8 @@ in
     boxbuddy tela-icon-theme ntfs3g
     mangohud btop fish fastfetch yazi eza
     ptyxis zed-editor vscode direnv nixd
-    brave heroic nodejs_latest home-manager
-    androidStudioPackages.stable
+    brave heroic nodejs_latest home-manager tailscale iosevka
+    androidStudioPackages.stable  telegram-desktop jetbrains.idea jetbrains.goland 
   ]
   ++ lib.optionals (de == "gnome") [
     gnome-tweaks gnome-extension-manager

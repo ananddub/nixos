@@ -22,6 +22,7 @@
   nix.optimise.automatic = true;
 
   services.earlyoom.enable = true;
+  services.tailscale.enable = true;
 
   networking.hostName = "nixos";
   networking.extraHosts = "127.0.0.1 docker.local";
@@ -45,6 +46,8 @@
     "vm.vfs_cache_pressure" = 50;
     "kernel.sched_autogroup_enabled" = 1;
     "vm.max_map_count" = 2147483642;
+    "kernel.perf_event_paranoid" = 1;
+    "kernel.kptr_restrict" = 0;
   };
 
   services.irqbalance.enable = true;
