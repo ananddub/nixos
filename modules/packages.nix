@@ -10,16 +10,19 @@ in
     vim git gh neovim helix tmux zoxide unzip wget
     google-chrome discord distrobox docker
     boxbuddy tela-icon-theme ntfs3g
-    mangohud btop fish fastfetch yazi eza
+    mangohud btop nvtopPackages.nvidia fish fastfetch yazi eza
     ptyxis zed-editor vscode direnv nixd
     brave heroic nodejs_latest home-manager tailscale iosevka
-    androidStudioPackages.stable  telegram-desktop jetbrains.idea jetbrains.goland 
+    androidStudioPackages.stable  telegram-desktop jetbrains.idea jetbrains.goland  
   ]
   ++ lib.optionals (de == "gnome") [
     gnome-tweaks gnome-extension-manager
   ]
   ++ lib.optionals (de == "plasma") [
     kdePackages.kate kdePackages.kcalc kdePackages.filelight
+  ];
+  fonts.packages = with pkgs; [
+    nerd-fonts.jetbrains-mono
   ];
   
 }

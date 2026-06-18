@@ -68,6 +68,7 @@
     mesa alsa-lib libxcomposite libxcursor libxdamage
   ];
   
+
   fileSystems."/run/media/das/SSD" = {
     device = "/dev/disk/by-uuid/1AB03937B0391AA9";
     fsType = "ntfs-3g";
