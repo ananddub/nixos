@@ -21,6 +21,12 @@ in
 
     home.sessionPath = [ "$HOME/.npm-global/bin" ];
 
+    home.pointerCursor = {
+      gtk.enable = true;
+      package = pkgs.vanilla-dmz;
+      name = "Vanilla-DMZ";
+    };
+
     programs.home-manager.enable = true;
   };
 }

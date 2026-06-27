@@ -23,6 +23,7 @@
 
   services.earlyoom.enable = true;
   services.tailscale.enable = true;
+  # services.netbird.enable = true;
 
   networking.hostName = "nixos";
   networking.extraHosts = "127.0.0.1 docker.local";
@@ -65,7 +66,11 @@
     gperftools expat libdrm libxkbfile libbsd libxcb-util libxcb-cursor
     libxcb-image libxcb-keysyms libxcb-wm libxfixes
     libsm libice fontconfig freetype pcre2 vulkan-loader
-    mesa alsa-lib libxcomposite libxcursor libxdamage
+    mesa alsa-lib libxcomposite libxcursor libxdamage crun
+libxkbcommon wayland
+ gtk3
+cairo
+pango 
   ];
   
 

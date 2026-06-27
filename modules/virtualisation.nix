@@ -1,20 +1,27 @@
 { config, lib, pkgs, ... }:
 {
-  virtualisation.docker = { enable = true; enableOnBoot = true; };
+  virtualisation.docker = { 
+    enable = true;
+     enableOnBoot = true;
+     daemon.settings = {
+        default-runtime = "crun";
+
+        runtimes = {
+          crun = {
+            path = "${pkgs.crun}/bin/crun";
+          };
+        };
+      };
+    };
 
   virtualisation.podman = {
     enable = true;
     dockerCompat = false;
     dockerSocket.enable = false;
   };
-
-  virtualisation.oci-containers.containers.portainer = {
-    image = "portainer/portainer-ce:latest";
-    ports = [ "9443:9443" "9000:9000" ];
-    volumes = [
-      "/var/run/docker.sock:/var/run/docker.sock"
-      "/var/lib/portainer:/data"
-    ];
-    autoStart = true;
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.vhostUserPackages = with pkgs; [ virtiofsd ];
   };
 }
