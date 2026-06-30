@@ -14,7 +14,7 @@ in
     ptyxis zed-editor vscode direnv nixd
     brave heroic nodejs_latest home-manager tailscale iosevka
     androidStudioPackages.stable  telegram-desktop jetbrains.idea jetbrains.goland  
-    gnumake net-tools  kubectl xorriso dnsmasq lima-full netbird-ui gh
+    gnumake net-tools  kubectl xorriso dnsmasq lima-full netbird-ui gh rustup
   
   ]
   ++ lib.optionals (de == "gnome") [

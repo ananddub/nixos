@@ -67,23 +67,29 @@
     libxcb-image libxcb-keysyms libxcb-wm libxfixes
     libsm libice fontconfig freetype pcre2 vulkan-loader
     mesa alsa-lib libxcomposite libxcursor libxdamage crun
-libxkbcommon wayland
- gtk3
-cairo
-pango 
-  ];
+    libxkbcommon wayland gtk3 cairo pango 
+];
   
 
-  fileSystems."/run/media/das/SSD" = {
-    device = "/dev/disk/by-uuid/1AB03937B0391AA9";
-    fsType = "ntfs-3g";
-    options = [ "uid=1000" "gid=100" "dmask=000" "fmask=000" "exec" "nofail" ];
+  # fileSystems."/run/media/das/SSD" = {
+  #   device = "/dev/disk/by-uuid/1AB03937B0391AA9";
+  #   fsType = "ntfs-3g";
+  #   options = [ "uid=1000" "gid=100" "dmask=000" "fmask=000" "exec" "nofail" ];
+  # };
+  fileSystems."/run/media/das/SSD" = { 
+    device = "/dev/disk/by-uuid/abf923dc-05ad-477f-b57f-fa06b1b67f89";                                                                     
+    fsType = "ext4";                                                                                                                       
+    options = [ "exec" "nofail" ];
   };
+
+  systemd.tmpfiles.rules = [
+    "d /run/media/das/SSD 0775 das users -"
+  ];
 
   fileSystems."/run/media/das/HDD" = {
     device = "/dev/disk/by-uuid/6E8EC6468EC60715";
-    fsType = "ntfs-3g";
-    options = [ "uid=1000" "gid=100" "dmask=000" "fmask=000" "exec" "nofail" ];
+    fsType = "ntfs3";
+    options = [ "uid=1000" "gid=100" "dmask=000" "fmask=000" "exec" "nofail" "force" ];
   };
 
   nix.nixPath = [ "nixos-config=/home/das/Documents/nixos/configuration.nix" "nixpkgs=/nix/var/nix/profiles/per-user/root/channels/nixos" ];
